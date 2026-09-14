@@ -17,23 +17,27 @@ export function Skills() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        <div className="mt-10 border-t border-border">
           {skillGroups.map((group, i) => (
-            <Reveal key={group.title} delay={i * 0.08}>
-              <h3 className="font-display text-lg font-semibold">
-                {group.title}
-              </h3>
-              <ul className="mt-4 flex flex-col gap-2">
-                {group.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="flex items-center gap-2 text-sm text-muted"
-                  >
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-2" />
-                    {skill}
-                  </li>
-                ))}
-              </ul>
+            <Reveal key={group.title} delay={i * 0.06}>
+              <div className="group flex flex-col gap-4 border-b border-border py-8 transition-colors sm:flex-row sm:items-center sm:gap-8">
+                <span className="font-mono text-sm text-muted">
+                  ({String(i + 1).padStart(2, "0")})
+                </span>
+                <h3 className="font-display text-2xl font-medium tracking-tight uppercase transition-colors group-hover:text-accent sm:text-3xl sm:w-64 sm:shrink-0">
+                  {group.title}
+                </h3>
+                <ul className="flex flex-wrap gap-2 sm:justify-end sm:flex-1">
+                  {group.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-sm border border-border px-3 py-1.5 font-mono text-xs uppercase tracking-[0.05em] text-muted"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Reveal>
           ))}
         </div>

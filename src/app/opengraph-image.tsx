@@ -15,8 +15,8 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #0a0c10 0%, #14181f 100%)",
-          color: "#f3f1ec",
+          background: "linear-gradient(135deg, #0d0c09 0%, #1c1a14 100%)",
+          color: "#f6f3ea",
           fontFamily: "sans-serif",
         }}
       >
@@ -26,7 +26,7 @@ export default async function OpengraphImage() {
             fontSize: 28,
             letterSpacing: 4,
             textTransform: "uppercase",
-            color: "#ff7a5c",
+            color: "#f4c430",
           }}
         >
           {site.role}
@@ -47,7 +47,7 @@ export default async function OpengraphImage() {
             fontSize: 30,
             marginTop: 24,
             maxWidth: 900,
-            color: "#9ca3af",
+            color: "#948d78",
           }}
         >
           {site.tagline}

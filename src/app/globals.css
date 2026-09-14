@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf9f6;
-  --foreground: #14181f;
+  --background: #f5f2ea;
+  --foreground: #100e08;
   --surface: #ffffff;
-  --surface-muted: #f1efe9;
-  --border: #e7e3da;
-  --accent: #ff6b4a;
-  --accent-foreground: #14181f;
-  --accent-2: #0d9488;
-  --muted: #6b7280;
+  --surface-muted: #ece7d9;
+  --border: #ddd6c4;
+  --accent: #e8ae1a;
+  --accent-foreground: #100e08;
+  --accent-2: #d6501f;
+  --muted: #6b6659;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0c10;
-    --foreground: #f3f1ec;
-    --surface: #12151b;
-    --surface-muted: #171a21;
-    --border: #232833;
-    --accent: #ff7a5c;
-    --accent-foreground: #0a0c10;
-    --accent-2: #2dd4bf;
-    --muted: #9ca3af;
+    --background: #0d0c09;
+    --foreground: #f6f3ea;
+    --surface: #161510;
+    --surface-muted: #1c1a14;
+    --border: #2c2a21;
+    --accent: #f4c430;
+    --accent-foreground: #100e08;
+    --accent-2: #ff6a3d;
+    --muted: #948d78;
   }
 }
 
@@ -37,7 +37,7 @@
   --color-accent-2: var(--accent-2);
   --color-muted: var(--muted);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-bricolage);
   --font-mono: var(--font-jetbrains-mono);
 }
 
@@ -58,6 +58,24 @@ body {
 ::selection {
   background: var(--accent);
   color: var(--accent-foreground);
+}
+
+/* Marquee ticker: two identical tracks side by side, scrolled 50% left in a loop. */
+.marquee-track {
+  animation: marquee 22s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

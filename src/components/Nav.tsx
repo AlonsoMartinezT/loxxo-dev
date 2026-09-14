@@ -9,11 +9,11 @@ export function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           href="#inicio"
-          className="font-display text-lg font-semibold tracking-tight"
+          className="font-display text-lg font-semibold tracking-tight uppercase"
           onClick={() => setOpen(false)}
         >
           {site.handle}
@@ -25,14 +25,14 @@ export function Nav() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-muted transition-colors hover:text-foreground"
+              className="font-mono text-xs uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
             >
               {item.label}
             </Link>
           ))}
           <Link
             href="#contacto"
-            className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-transform hover:scale-105 active:scale-95"
+            className="rounded-sm bg-accent px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-accent-foreground transition-transform hover:scale-105 active:scale-95"
           >
             Hablemos
           </Link>
@@ -43,12 +43,9 @@ export function Nav() {
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-border md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-sm border border-border md:hidden"
         >
-          <motion.span
-            className="relative block h-4 w-5"
-            initial={false}
-          >
+          <motion.span className="relative block h-4 w-5" initial={false}>
             <motion.span
               className="absolute left-0 top-0 h-0.5 w-5 bg-foreground"
               animate={{ rotate: open ? 45 : 0, y: open ? 7 : 0 }}
@@ -83,7 +80,7 @@ export function Nav() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 text-base text-foreground transition-colors hover:bg-surface-muted"
+                  className="rounded-sm px-3 py-3 font-mono text-sm uppercase tracking-[0.1em] text-foreground transition-colors hover:bg-surface-muted"
                 >
                   {item.label}
                 </Link>
