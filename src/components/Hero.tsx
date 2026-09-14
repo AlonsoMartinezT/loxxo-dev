@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { HeroVisual } from "@/components/HeroVisual";
 import { Marquee } from "@/components/Marquee";
 import { StatusBar } from "@/components/StatusBar";
 import { site } from "@/lib/site";
@@ -29,8 +30,6 @@ const marqueeItems = [
 ];
 
 export function Hero() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section id="inicio" className="relative flex min-h-screen flex-col pt-16">
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-20">
@@ -39,7 +38,7 @@ export function Hero() {
             <StatusBar />
           </motion.div>
 
-          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_0.6fr] lg:items-end">
+          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
               <motion.h1
                 variants={item}
@@ -77,24 +76,8 @@ export function Hero() {
               </motion.div>
             </div>
 
-            <motion.div
-              variants={item}
-              className="mx-auto flex aspect-square w-full max-w-[220px] rotate-3 items-center justify-center border border-accent lg:mx-0 lg:ml-auto"
-            >
-              <motion.div
-                animate={
-                  shouldReduceMotion ? undefined : { rotate: [0, -6, 0, 6, 0] }
-                }
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                className="flex h-full w-full -rotate-3 items-center justify-center border border-border bg-surface"
-              >
-                <span className="font-display text-6xl font-semibold tracking-tight">
-                  {site.name
-                    .split(" ")
-                    .map((w) => w[0])
-                    .join("")}
-                </span>
-              </motion.div>
+            <motion.div variants={item} className="lg:ml-auto lg:w-full">
+              <HeroVisual />
             </motion.div>
           </div>
         </motion.div>
