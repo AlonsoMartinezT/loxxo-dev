@@ -1,0 +1,65 @@
+name: Evidencia automática
+
+# Se dispara cuando Vercel reporta el estado de un deployment (vía su GitHub App).
+# Solo actuamos si el estado es "success", para capturar el sitio ya desplegado.
+on:
+  deployment_status:
+
+permissions:
+  contents: write
+
+jobs:
+  evidencias:
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del commit desplegado
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha }}
+          fetch-depth: 2
+
+      # Evita un loop infinito: si el propio commit desplegado ya es una
+      # actualización de evidencias, no generamos otra vuelta.
+      - name: Verificar que no sea un commit de evidencias
+        id: guard
+        run: |
+          MSG=$(git log -1 --pretty=%s)
+          echo "message=$MSG"
+          if [[ "$MSG" == chore\(evidencias\)* ]]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js
+        if: steps.guard.outputs.skip == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        if: steps.guard.outputs.skip == 'false'
+        run: npm ci
+
+      - name: Instalar navegador de Playwright
+        if: steps.guard.outputs.skip == 'false'
+        run: npx playwright install --with-deps chromium
+
+      - name: Generar capturas y actualizar registro
+        if: steps.guard.outputs.skip == 'false'
+        run: node scripts/evidencias.mjs --url="${{ github.event.deployment_status.environment_url }}" --desc="${{ github.event.deployment.description || github.event.deployment.ref }}"
+
+      - name: Commit y push de la evidencia
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidencias/
+          if git diff --cached --quiet; then
+            echo "Sin cambios en evidencias, nada que commitear."
+          else
+            git commit -m "chore(evidencias): capturas automáticas para ${{ github.event.deployment.sha }}"
+            git push origin HEAD:${{ github.event.deployment.ref }}
+          fi
