@@ -4,45 +4,60 @@ export type Project = {
   description: string;
   tags: readonly string[];
   href: string;
+  image: string;
   accent: "coral" | "teal" | "amber" | "violet";
 };
 
 export const projects: readonly Project[] = [
   {
-    slug: "nimbus",
-    name: "Nimbus",
+    slug: "orvelle",
+    name: "Orvelle",
     description:
-      "Panel de analítica en tiempo real para equipos de producto, con dashboards configurables y alertas.",
-    tags: ["Next.js", "TypeScript", "tRPC", "PostgreSQL"],
-    href: "https://github.com/AlonsoMartinezT/nimbus",
+      "E-commerce de belleza en Tulum con carrito real, base de datos Supabase, autenticación y panel de administrador con CRUD de productos e imágenes.",
+    tags: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS"],
+    href: "https://alonsomartinezt.github.io/orvelle/",
+    image: "/projects/orvelle.jpg",
     accent: "coral",
   },
   {
-    slug: "sendero",
-    name: "Sendero",
+    slug: "amtixo-crm",
+    name: "Amtixo CRM",
     description:
-      "App móvil de rutas de senderismo con mapas offline, registro de actividad y comunidad de exploradores.",
-    tags: ["React Native", "Expo", "Supabase"],
-    href: "https://github.com/AlonsoMartinezT/sendero",
-    accent: "teal",
+      "CRM completo con pipeline de ventas en Kanban (drag & drop nativo), gestión de contactos, tareas y notas, todo con autenticación real y base de datos Supabase.",
+    tags: ["Next.js", "Supabase", "TypeScript", "Auth"],
+    href: "https://alonsomartinezt.github.io/amtixo-crm/",
+    image: "/projects/amtixo-crm.jpg",
+    accent: "violet",
   },
   {
-    slug: "cuadra",
-    name: "Cuadra",
+    slug: "estudio-andaro",
+    name: "Estudio Andaro",
     description:
-      "Plataforma de reservas para estudios de yoga y fitness boutique, con pagos y gestión de clases.",
-    tags: ["Next.js", "Stripe", "Prisma"],
-    href: "https://github.com/AlonsoMartinezT/cuadra",
+      "Sitio multipágina para un despacho de arquitectura: 17 rutas estáticas, fichas de proyecto, filtros por categoría y formulario de contacto vía WhatsApp.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Static Export"],
+    href: "https://alonsomartinezt.github.io/estudio-andaro/",
+    image: "/projects/estudio-andaro.jpg",
     accent: "amber",
   },
   {
-    slug: "lector",
-    name: "Lector",
+    slug: "torque-cinco",
+    name: "Torque Cinco",
     description:
-      "Extensión de navegador que resume artículos largos con IA para lectura rápida y guardado offline.",
-    tags: ["TypeScript", "Chrome Extensions", "OpenAI API"],
-    href: "https://github.com/AlonsoMartinezT/lector",
-    accent: "violet",
+      "Sitio de un taller mecánico con 20 rutas: diagnóstico interactivo por síntomas, cotizador de 4 pasos con estimado en vivo, y transiciones de página con <ViewTransition> de React.",
+    tags: ["Next.js", "React 19", "TypeScript"],
+    href: "https://alonsomartinezt.github.io/torque-cinco/",
+    image: "/projects/torque-cinco.jpg",
+    accent: "teal",
+  },
+  {
+    slug: "zancada",
+    name: "Zancada",
+    description:
+      "E-commerce de streetwear con animación por scroll nativa (animation-timeline: view()), barra de progreso y apariciones escalonadas, con respaldo IntersectionObserver.",
+    tags: ["Next.js", "CSS Scroll-Driven Animations", "TypeScript"],
+    href: "https://alonsomartinezt.github.io/zancada/",
+    image: "/projects/zancada.jpg",
+    accent: "coral",
   },
 ] as const;
 

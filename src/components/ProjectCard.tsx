@@ -22,11 +22,11 @@ export function ProjectCard({
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image
-          src={`/projects/${project.slug}.svg`}
+          src={project.image}
           alt=""
           fill
           sizes="(min-width: 768px) 45vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
         />
         <span className="absolute left-4 top-4 rounded-sm bg-background/80 px-2 py-1 font-mono text-xs text-muted backdrop-blur-sm">
           {String(index + 1).padStart(2, "0")}
